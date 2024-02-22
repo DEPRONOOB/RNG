@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title>RNG</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    #container {
+        text-align: center;
+        padding: 20px;
+        background-color: #404040;
+        border-radius: 8px;
+        border: 2px solid #808080;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: black;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #333;
+    }
+
+    p {
+        margin: 10px 0;
+        color: #fff;
+    }
+
+    span {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    h1 {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    footer {
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .green {
+        color: green;
+    }
+
+    .red {
+        color: red;
+    }
+
+    .copyButton {
+        background-color: black;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .copyButton:hover {
+        background-color: #333;
+    }
+</style>
+</head>
+<body>
+
+<div id="container">
+    <h1>RNG</h1>
+    <button id="generateButton">Generate</button>
+    <p>Numbers: <span id="numBox"></span><button class="copyButton" id="copyNumButton">Copy</button></p>
+    <p>Letters: <span id="wordBox"></span><button class="copyButton" id="copyWordButton">Copy</button></p>
+    <p>Y/N: <span id="ynBox"></span></p>
+    <p>Amount: <span id="amountBox"></span></p>
+    <footer>If you want to change the letters and mapping, change the code there are simple instructions.</footer>
+</div>
+
+<script>
+    const maxNumbers = 8; /* Change this number to how many you want generated*/
+    const numBox = document.getElementById("numBox");
+    const wordBox = document.getElementById("wordBox");
+    const ynBox = document.getElementById("ynBox");
+    const amountBox = document.getElementById("amountBox");
+
+    function mapNumberToLetter(number) {
+        if (number >= 1 && number <= 2) {
+            return "G";
+        } else if (number >= 3 && number <= 4) {
+            return "H";
+        } else if (number >= 5 && number <= 7) {
+            return "R";
+        } else {
+            return "S";
+        }
+    }/* Change (G, H, R, S) to your Letters, and change the numbers to your mapping. E.G. number >= 1 && number <= 5) this is if number 
+    is over 1 and less than 5 same with the others. */
+
+    document.getElementById("generateButton").addEventListener("click", function() {
+        let symbolCount = {G: 0, H: 0, R: 0, S: 0}; /*Change these letters to your mapping*/
+        let numbers = [];
+        let letters = [];
+        let amount = 0;
+
+        for (let i = 0; i < maxNumbers; i++) {
+            amount++;
+            let rng = Math.floor(Math.random() * 10) + 1;
+            let letter = mapNumberToLetter(rng);
+
+            numbers.push(rng);
+            letters.push(letter);
+            symbolCount[letter]++;
+
+            if (symbolCount.G > 0 && symbolCount.H > 0 && symbolCount.R > 0 && symbolCount.S > 0) {
+                ynBox.textContent = "YES"; /* ONLY change the Letters here to your mapping. */
+                ynBox.style.color = "green";
+                amountBox.textContent = amount;
+                break;
+            }
+            ynBox.textContent = "NO";
+            ynBox.style.color = "red";
+            amountBox.textContent = amount;
+        }
+
+        numBox.textContent = numbers.join(", ");
+        wordBox.textContent = letters.join(", ");
+    });
+</script>
+
+<script>
+    function resetCopyButtons() {
+        document.getElementById("copyNumButton").textContent = "Copy";
+        document.getElementById("copyWordButton").textContent = "Copy";
+    }
+
+    document.getElementById("copyNumButton").addEventListener("click", function() {
+        var numBox = document.getElementById("numBox");
+        var range = document.createRange();
+        range.selectNode(numBox);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        this.textContent = "Copied!";
+        setTimeout(resetCopyButtons, 2000); // Reset after 2 seconds
+    });
+
+    document.getElementById("copyWordButton").addEventListener("click", function() {
+        var wordBox = document.getElementById("wordBox");
+        var range = document.createRange();
+        range.selectNode(wordBox);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        this.textContent = "Copied!";
+        setTimeout(resetCopyButtons, 2000); // Reset after 2 seconds
+    });
+</script>
+
+
+</body>
+</html>
