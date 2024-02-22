@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<script src="script.js"></script>
 <title>RNG</title>
 <style>
     body {
@@ -80,95 +79,10 @@
     .copyButton:hover {
         background-color: #333;
     }
-
-    .nav-btn {
-  height: 100%;
-  width: 50px;
-  display: flex;
-  background-color: #111;
-  border-radius: 5px;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.nav-btn i {
-  color: #ffffff;
-}
-
-.nav-btn:hover {
-  background-color: #222;
-}
-
-#sidebar {
-  height: 100%;
-  width: 200px;
-  background-color: #222;
-  flex-direction: column;
-  position: fixed;
-  display: inline-block;
-  z-index: 2;
-  top: 50px;
-  left: -200px;
-  transition: all 0.4s ease;
-}
-
-nav ol {
-  position: relative;
-}
-
-nav ol li {
-  display: inline-block;
-  list-style-type: none;
-  padding: 0 10px;
-  margin: 10px 0;
-  position: relative;
-}
-
-nav ol li a {
-  text-decoration: none;
-  font-size: 25px;
-  color: #d6d6d6;
-  position: relative;
-  display: flex;
-}
-
-#sidebar.show {
-  left: 0;
-}
-
-nav ol li a:hover {
-  color: #ffffff;
-}
-
-nav ol li i {
-  color: #bdbebe;
-  position: absolute;
-  left: -22px;
-  top: 15px;
-  background-color: transparent;
-}
-
-nav img {
-  max-width: 100%;
-  height: auto;
-  bottom: 7%;
-  position: absolute;
-}
 </style>
-        <span class="nav-btn">
 </head>
 <body>
 
-<nav id="sidebar">
-    <ol class="left-col-list">
-        <li><i class="fa-sharp fa-solid fa-house fa-xl"></i><a href="https://home.derponoob.repl.co">Home</a></li>
-        <li><i class="fa-solid fa-question fa-xl"></i><a href="policy.html">About</a></li>
-        <li><i class="fa-regular fa-address-card fa-xl"></i><a href="#">Contact</a></li>
-        <li><i class="fa-brands fa-instagram fa-xl"></i><a href="https://www.instagram.com/skuzixp0/?hl=en">Instagram</a></li>
-        <li><i class="fa-brands fa-tiktok fa-xl"></i><a href="https://www.tiktok.com/@derponoob">Tiktok</a></li>
-    </ol>
-    <img src="image.png">
-</nav>
 <div id="container">
     <h1>RNG</h1>
     <button id="generateButton">Generate</button>
