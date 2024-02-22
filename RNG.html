@@ -159,7 +159,7 @@
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
         this.textContent = "Copied!";
-        setTimeout(resetCopyButtons, 2000); // Reset after 2 seconds
+        setTimeout(resetCopyButtons, 2000);
     });
 
     document.getElementById("copyWordButton").addEventListener("click", function() {
@@ -171,9 +171,37 @@
         document.execCommand("copy");
         window.getSelection().removeAllRanges();
         this.textContent = "Copied!";
-        setTimeout(resetCopyButtons, 2000); // Reset after 2 seconds
+        setTimeout(resetCopyButtons, 2000);
     });
 </script>
+
+<script> /* Don't worry about this*/
+    const mapping = {
+        G: [1, 2],
+        H: [3, 4],
+        R: [5, 6, 7],
+        S: [8, 9, 10]
+    };
+
+    function createMappingParagraph() {
+        let mappingParagraph = document.createElement("p");
+        let mappingText = "Mapping: ";
+        
+        for (const letter in mapping) {
+            if (mapping.hasOwnProperty(letter)) {
+                mappingText += letter + " = " + mapping[letter].join(", ") + ", ";
+            }
+        }
+        
+        mappingText = mappingText.slice(0, -2);
+        
+        mappingParagraph.textContent = mappingText;
+        document.getElementById("container").appendChild(mappingParagraph);
+    }
+
+    createMappingParagraph();
+</script>
+
 
 
 </body>
